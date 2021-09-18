@@ -1,12 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% load static %}
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Project awards</title>
 </head>
-<body>
-    <h2>These are the projects I have been working on.<br> Please rate them</h2>
-</body>
+{% block content%}
+{{block.super}}
+
+  {% if projects %}
+  {% for project in projects %}
+  <br>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+      <div class="card h-100">
+        <img src="{{project.image}}" alt="my-gallery" >
+        <div class="card-body">
+          <h5 class="card-title">{{project.title|title}}</h5>
+          <p class="card-text">{{project.description}}</p>
+        </div>
+        <a href="{{project.link}}" target="_nicky">View</a>
+        <div class="card-footer">
+          <small class="text-muted">{{project.date|timesince}} ago</small>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {%endif%}
+    {%endblock%}   
 </html>
