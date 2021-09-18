@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand col-md-2" href="{% url 'index'%}">AWARDS</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+          
+          <li class="nav-item col-md-6 mx-2" >
+            
+                <a href="{% url 'admin:index' %}"><i class="fas fa-user-lock fa-1x ms-5" style="color: #0275d8;"></i></a>
+              
+          </li>
+          <li class="nav-item col-md-6 mx-2 text-center" style="background-color: skyblue; border-radius: 5px;">
+            <a class="nav-link active" aria-current="page" href="{% url 'profile'%}">Profile</a>
+          </li>
+          <li class="nav-item dropdown col-md-6 mx-1 text-center" style="background-color: limegreen; border-radius: 5px;">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              ACCOUNTS
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" href="/accounts/register/">Register</a></li>
+              <li><a class="dropdown-item" href="/accounts/login/">Login</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/logout">Logout</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown col-md-3  mx-2 text-center" style="background-color: cadetblue; border-radius: 5px;" >
+            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              API
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" href="/api/profiles/">Profiles</a></li>
+              <li><a class="dropdown-item" href="/api/projects/">Projects</a></li>
+            </ul>
+          </li>
+        </ul>
+      
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
