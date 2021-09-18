@@ -1,0 +1,122 @@
+{% extends 'base.html'%}
+{% block styles%}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans', sans-serif
+}
+
+html,
+body {
+    height: 100%
+}
+
+/* body {
+    display: grid;
+    place-items: center;
+    background: #AB47BC
+} */
+
+.card {
+    color: #fff;
+    width: 350px;
+    border-radius: 10px;
+    background: linear-gradient(145deg, green, skyblue);
+    box-shadow: 20px 20px 60px limegreen, -20px -20px 60px cyan;
+    border: none
+}
+
+.neo-button {
+    width: 40px;
+    height: 40px;
+    outline: 0 !important;
+    cursor: pointer;
+    color: #fff;
+    font-size: 15px;
+    border: none;
+    margin-right: 10px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #9a40a9, #b74cc9);
+    box-shadow: inset 20px 20px 60px #913ca0, inset -20px -20px 60px #c552d8
+}
+
+.num {
+    color: #eee !important
+}
+
+.line {
+    color: #fff
+}
+
+.neo-button:active {
+    border-radius: 50%;
+    background: #AB47BC;
+    box-shadow: 28px 28px 57px #933da2, -28px -28px 57px #c351d6
+}
+
+.fa-facebook {
+    color: #3b5998
+}
+
+.fa-linkedin {
+    color: #0077b5
+}
+
+.fa-google {
+    color: #dc4e41
+}
+
+.fa-youtube {
+    color: #cd201f
+}
+
+.fa-twitter {
+    color: #55acee
+}
+
+.profile_button {
+    color: #fff;
+    padding: 10px;
+    border: none;
+    outline: 0 !important;
+    border-radius: 50px;
+    background: #AB47BC;
+    box-shadow: 28px 28px 57px #933da2, -28px -28px 57px #c351d6
+}
+</style>
+{% endblock%}
+
+{% block content%}
+{% if profiles%}
+
+{% for profile in profiles%}
+<br>
+
+<div class="container d-flex justify-content-center">
+    <div class="card p-3 py-4">
+        <div class="text-center"> <img src="{{user.profile.profile_picture.url}}" width="100" class="rounded-circle">
+            <h3 class="mt-2">{{profile.name}}</h3> <span class="mt-1 clearfix">{{profile.bio}}</span>
+            <div class="row mt-3 mb-3">
+                <div class="col-md-4">
+                    <h5>Projects</h5> <span class="num">10</span>
+                </div>
+                <div class="col-md-4">
+                    <h5>Projects</h5> <span class="num">10</span>
+                </div>
+                <div class="col-md-4">
+                    <h5>Projects</h5> <span class="num">10</span>
+                </div>
+            </div>
+            <hr class="line"> <small class="mt-4">I am an android developer working at google Inc at california,USA</small>
+            <div class="social-buttons mt-5"> <button class="neo-button"><i class="fa fa-facebook fa-1x"></i> </button> <button class="neo-button"><i class="fa fa-linkedin fa-1x"></i></button> <button class="neo-button"><i class="fa fa-google fa-1x"></i> </button> <button class="neo-button"><i class="fa fa-youtube fa-1x"></i> </button> <button class="neo-button"><i class="fa fa-twitter fa-1x"></i> </button> </div>
+            <div class="profile mt-5"> <button class="profile_button px-5">View profile</button> </div>
+        </div>
+    </div>
+</div>
+{%endfor%}
+{%endif%}
+{% endblock%}
