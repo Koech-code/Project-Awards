@@ -1,12 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from awards.models import Projects
-from .forms import ProjectForm, ProfileForm
+from .forms import ProjectForm, ProfileForm, RateForm
 from django.shortcuts import render
 from django.http  import HttpResponse, request
 import random
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Projects, Profile
+from .models import Projects, Profile, Ratings
 from .serializer import ProjectSerializer, ProfileSerializer
 
 # Create your views here.
@@ -73,4 +73,29 @@ class ProfList(APIView):
         all_profiles = Profile.objects.all()
         serializers = ProfileSerializer(all_profiles, many=True)
         return Response(serializers.data)
-    
+
+@login_required(login_url='/accounts/login/')
+def rates(request, project):
+    project=Projects.objects.get(title=project)
+    rate=Ratings.objects.filter(user=request.user, project=project).first()
+    status=None
+    if rate is None:
+        return status==False
+    else:
+        return status==True
+   
+    if request.method=='POST':
+        form=RateForm()
+        if form.is_valid():
+            rating=form.save(commit=False)
+            rating.user=request.user
+            rate.project=project
+
+            project_ratings=Ratings.objects.filter(project=project)
+
+            design_ratings=[r.design for r in project_ratings]
+            design_average=sum(design_ratings) /len(design_ratings)
+
+            
+
+    return render(request, 'modal.html')
