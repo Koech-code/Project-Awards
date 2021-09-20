@@ -2,6 +2,7 @@ from django import forms
 from django.forms import forms
 from pyuploadcare.dj.forms import ImageField
 from . models import Profile, Projects, Ratings
+from django.forms import ModelForm
 
 class ProjectForm(forms.Form):
     class Meta:
@@ -21,3 +22,8 @@ class RateForm(forms.Form):
         model=Ratings
         fields=('user','design', 'usability', 'content')
 
+class uploadForm(ModelForm):
+   
+    class Meta:
+        model=Projects
+        fields=('title','description', 'link')
