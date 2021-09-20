@@ -40,8 +40,8 @@ body {
     border: none;
     margin-right: 10px;
     border-radius: 50%;
-    background: linear-gradient(145deg, #9a40a9, #b74cc9);
-    box-shadow: inset 20px 20px 60px #913ca0, inset -20px -20px 60px #c552d8
+    background: linear-gradient(145deg, grey, red);
+    box-shadow: inset 20px 20px 60px silver, inset -20px -20px 60px grey;
 }
 
 .num {
@@ -54,8 +54,8 @@ body {
 
 .neo-button:active {
     border-radius: 50%;
-    background: #AB47BC;
-    box-shadow: 28px 28px 57px #933da2, -28px -28px 57px #c351d6
+    background: skyblue;
+    box-shadow: 28px 28px 57px skyblue, -28px -28px 57px skyblue
 }
 
 .fa-facebook {
@@ -84,8 +84,8 @@ body {
     border: none;
     outline: 0 !important;
     border-radius: 50px;
-    background: #AB47BC;
-    box-shadow: 28px 28px 57px #933da2, -28px -28px 57px #c351d6
+    background: skyblue;
+    box-shadow: 28px 28px 57px skyblue, -28px -28px 57px cadetblue;
 }
 </style>
 {% endblock%}
@@ -99,19 +99,14 @@ body {
 <div class="container d-flex justify-content-center">
     <div class="card p-3 py-4">
         <div class="text-center"> <img src="{{user.profile.profile_picture.url}}" width="100" class="rounded-circle">
-            <h3 class="mt-2">{{profile.name}}</h3> <span class="mt-1 clearfix">{{profile.bio}}</span>
+            <h3 class="mt-2">{{profile.name}}</h3>
+            <hr class="line"> <small class="mt-4"></small>
+            <span class="mt-1 clearfix">{{profile.bio}}</span>
             <div class="row mt-3 mb-3">
                 <div class="col-md-4">
-                    <h5>Projects</h5> <span class="num">10</span>
-                </div>
-                <div class="col-md-4">
-                    <h5>Projects</h5> <span class="num">10</span>
-                </div>
-                <div class="col-md-4">
-                    <h5>Projects</h5> <span class="num">10</span>
+                    <h5>Projects</h5> <span class="num">{{project.title|length}}</span>
                 </div>
             </div>
-            <hr class="line"> <small class="mt-4">I am an android developer working at google Inc at california,USA</small>
             <div class="social-buttons mt-5"> <button class="neo-button"><i class="fa fa-facebook fa-1x"></i> </button> <button class="neo-button"><i class="fa fa-linkedin fa-1x"></i></button> <button class="neo-button"><i class="fa fa-google fa-1x"></i> </button> <button class="neo-button"><i class="fa fa-youtube fa-1x"></i> </button> <button class="neo-button"><i class="fa fa-twitter fa-1x"></i> </button> </div>
             <div class="profile mt-5"> <button class="profile_button px-5">View profile</button> </div>
         </div>
