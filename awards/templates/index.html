@@ -7,26 +7,45 @@
     <title>Project awards</title>
 </head>
 {% block content%}
-{{block.super}}
 
-  {% if projects %}
-  {% for project in projects %}
-  <br>
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col">
-      <div class="card h-100">
-        <img src="{{project.image}}" alt="my-gallery" >
-        <div class="card-body">
-          <h5 class="card-title">{{project.title|title}}</h5>
-          <p class="card-text">{{project.description}}</p>
+
+{{block.super}}
+{% if projects %}
+<br>
+<div class="container">
+   <div class="row">   
+     {% for project in projects %} 
+        <div class="col-md-4 mt-5">
+          
+            <div class="card bg-light" style="width: 24rem; height: 30em;">
+              <div class="col-md-6 mb-2 py-1 px-2">
+                <img src="{{user.profile.profile_picture.url}}" width="60" class="rounded-circle"><span class="px-2">By <span style="color: cornflowerblue;">{{project.user}}</span></span>
+            </div>
+                <img src="{{project.image}}" class="img-responsive" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">{{project.title}}</h5>  
+                    <p class="card-text">{{project.description}}</p> 
+                </div>  
+                <div class="card-footer bg-white">
+                  <button class="btn btn-success ">
+                    <a href="{{project.link}}" style="color: white; text-decoration: none;" target="_nicky">View</a>
+                  </button>
+                  <small class="text-muted">Posted: <span style="color: darkgoldenrod;">{{project.date|timesince}}</span> <span style="color: cyan;">ago</span></small>
+                  <button class="btn btn-primary ">
+                    <a href="#" style="color: white; text-decoration: none;" target="_nicky">Rate</a>
+                  </button>
+                </div>  
+                
+            </div>
+            <br>
         </div>
-        <a href="{{project.link}}" target="_nicky">View</a>
-        <div class="card-footer">
-          <small class="text-muted">{{project.date|timesince}} ago</small>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-    {%endif%}
-    {%endblock%}   
-</html>
+        
+        {% endfor%}    
+        
+        
+   </div>
+</div>
+{%endif%}
+{% endblock%}
+<br>
+<br>
