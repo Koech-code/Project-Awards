@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+{% load bootstrap5%}
+{% block content %}
+{{block.super}}
+<div class="box mx-5" >
+    <div class="text-center">
+    <div class="title">New project</div>
+    <hr>
+    <div class="guide">Add a project by providing the project title, project screenshot, a short description of the project and  a live link to the website.</div>
+    </div>
+    {% for message in messages %}
+    {% if message.tags == "error" %}
+      <div  class="alert alert-danger">{{ message }}</div>
+    {% else %}
+      <div  class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endif %}
+    {% endfor %}
+    <form action="{%url 'uploads'%}" method="POST" enctype="multipart/form-data">
+        {%csrf_token%} 
+        {% bootstrap_form form%} 
+        <input type="submit" class="btn btn-dark " value=" Add Project">
+    </form>
+</div>
+{%endblock%}
