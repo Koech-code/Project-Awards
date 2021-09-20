@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% if search %}
+        <h3>Found {{ search | length }} of searched term <span style="color: white;">{{ message }}</span></h3>
+        {% else%}
+        <h2>Found 0 images for the search_word {{ message }}</h2>
+        {% endif%}
+    </div>
+    <div class="row">
+     {% for project in search %}
+    <div class="col-md-6">
+        <div class="card" style="width: 30rem; height: auto; background-color: rgb(241, 233, 241);">
+            <div class="col-md-4 mb-4 px-1 py-2">
+                <img src="{{user.profile.profile_picture.url}}" width="60" class="rounded-circle"><span class="px-1 py-2">{{project.user}}</span>
+            </div>
+            <img src="{{project.image}}" class="img-responsive" data-bs-toggle="modal" alt="">
+            <h5 class="card-title">{{project.title}}</h5>
+            <p class="card-text">Description: <span style="color: green;">{{project.description}}</span> </p>
+            <a href="#">link : {{project.link}}</a>  
+            
+        </div>
+    </div>
+    <br>
+     {% endfor%} 
+    </div>
+</div>
+
+{% endblock%}
