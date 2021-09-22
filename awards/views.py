@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.http.response import Http404, HttpResponseRedirect
 from awards.models import Projects
 from .forms import ProjectForm, ProfileForm, RateForm, uploadForm
@@ -49,6 +50,7 @@ class ProjList(APIView):
 
 @login_required(login_url='/accounts/login/')
 def profile(request):
+    user=request.user
     if request.method=='POST':
         
         form=ProfileForm(request.POST)
@@ -58,17 +60,15 @@ def profile(request):
             profile.save()
     else:
         form=ProfileForm()
+        
     
     try:
-        profiles=Profile.objects.all()
-        # projects = projects[::-1]
-        # randoms = random.randint(0, len(projects)-1)
-        # random_project = projects[randoms]
-        # print(random_project.image)
+        profiles=Profile.get_profile(user)
     except Profile.DoesNotExist:
         profiles = None
 
     return render(request, 'profile.html', {'profiles':profiles, 'form':form })
+
 
 class ProfList(APIView):
     def get(self, request, format=None):
@@ -79,16 +79,16 @@ class ProfList(APIView):
 
 @login_required(login_url='login')
 def rates(request, project):
-    project=Projects.objects.get(title=project)
-    rate=Ratings.objects.filter(user=request.user, project=project).first()
-    status=None
+    projects=Projects.objects.get(id=project)
+    rate=Ratings.objects.filter(project=projects).all()
+    # status=None
    
     if request.method=='POST':
-        form=RateForm()
+        form=RateForm(request.POST)
         if form.is_valid():
             rating=form.save(commit=False)
             rating.user=request.user
-            rating.project=project
+            rating.project=projects
             rating.save()
 
             project_ratings=Ratings.objects.filter(project=project)
@@ -109,6 +109,7 @@ def rates(request, project):
             rating.content_average=round(content_average, 2)
             rating.score=round(score, 2)
             rating.save()
+            print(rating)
 
             return HttpResponseRedirect(request.path_info)
     else:
@@ -116,9 +117,11 @@ def rates(request, project):
     parameters={
         'project':project,
         'rating_form':form,
-        'rating_status':status
+        'id':project,
+        'rate':rate
+        # 'rating_status':status
     }
-    return render(request, 'modal.html', parameters)
+    return render(request, 'rate.html', parameters )
 
 
 @login_required(login_url='login')

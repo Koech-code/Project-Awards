@@ -40,15 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'awards',
     'bootstrap5',
-    'pyuploadcare.dj',
     'rest_framework',
     
 ]
-
-UPLOADCARE = {
-    'pub_key': 'f4136db87495a776a334',
-    'secret': 'd9f484a0a46e4920f787',
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -114,6 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LOGIN_REDIRECT_URL='/'
 LOGOUT_REDIRECT_URL='/'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

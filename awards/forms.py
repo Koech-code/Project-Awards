@@ -1,29 +1,23 @@
 from django import forms
-from django.forms import forms
-from pyuploadcare.dj.forms import ImageField
 from . models import Profile, Projects, Ratings
-from django.forms import ModelForm
 
-class ProjectForm(forms.Form):
+
+class ProjectForm(forms.ModelForm):
     class Meta:
         model=Projects
-        fields=('title', 'description', 'date', 'link')
+        fields=('title', 'description', 'link')
 
-    image=ImageField(label='')
-
-
-class ProfileForm(forms.Form):
+class ProfileForm(forms.ModelForm):
     class Meta:
         model=Profile
-        fields=('user', 'name', 'bio')
+        fields=('name', 'bio')
 
-class RateForm(forms.Form):
+class RateForm(forms.ModelForm):
     class Meta:
         model=Ratings
-        fields=('user','design', 'usability', 'content')
+        fields=('design', 'usability', 'content')
 
-class uploadForm(ModelForm):
-   
+class uploadForm(forms.ModelForm):
     class Meta:
         model=Projects
-        fields=('title','description', 'link')
+        fields=('title', 'image', 'description', 'link')

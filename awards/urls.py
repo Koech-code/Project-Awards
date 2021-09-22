@@ -12,7 +12,7 @@ urlpatterns=[
     url('logout/', LogoutView.as_view(), {"next_page":''}),
     url(r'^api/projects/$', views.ProjList.as_view()),
     url(r'^api/profiles/$', views.ProfList.as_view()),
-    url(r'^rates/<project>', views.rates, name='rates'),
+    url('rates/(\d+)', views.rates, name='rates'),
     url('uploads/' ,views.upload, name='uploads'),
 ]
 

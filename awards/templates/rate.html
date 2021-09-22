@@ -1,0 +1,63 @@
+{% extends 'base.html'%}
+{% load bootstrap5 %} 
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rate</title>
+</head>
+    <form action="{%url 'rates' id%}" class="form-group" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        <div class="card-body">
+            <div class="card-text">
+                {% bootstrap_form rating_form%}
+            </div>
+        </div>
+        <input type="submit" class="btn btn-success btn-lg" value="Rate">
+    </form>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <td colspan='5'>
+                    <h2 class=" text-center" style="color: rgb(209, 242, 255);">Ratings</h2>
+                </td>
+            </tr>
+        </thead>
+        <thead>
+            <tr>
+                <th scope="col "> Design</th>
+                <th scope="col "> Content</th>
+                <th scope="col "> Usability</th>
+                <th scope="col "> Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rate in rate %}
+            <tr>
+                <td>
+                    <h2>{{rate.design}}</h2>
+                </td>
+                <td>
+                    <h2>{{rate.content}}</h2>
+                </td>
+                <td>
+                    <h2>{{rate.usability}}</h2>
+                </td>
+                <td>
+                    <h2>{{rate.score}}</h2>
+                </td>
+                
+</div>
+{%endfor%}
+</table>
+    
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% bootstrap_javascript %} 
+    {% endblock %}
+</html>
+{%endblock %}
