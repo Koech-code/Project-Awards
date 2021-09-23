@@ -38,7 +38,7 @@ These are the actions the user will do.Inputs required and their outputs on the 
 
 ## Live Demo
 
-[Live Demo Link]( --)
+[Live Demo Link]( https://nickyprojectawwards.herokuapp.com/)
 
 
 ### Installation Process
